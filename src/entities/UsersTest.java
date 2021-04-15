@@ -51,4 +51,8 @@ public class UsersTest {
 			this.sair = false;
 		}
 	}
+	@Override
+	public String toString() {
+		return "UsersTest [id=" + id + ", name=" + name + ", observacao=" + observacao + ", sair=" + sair + "]";
+	}
 }
