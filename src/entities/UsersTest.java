@@ -53,6 +53,7 @@ public class UsersTest {
 	}
 	@Override
 	public String toString() {
-		return "UsersTest [id=" + id + ", name=" + name + ", observacao=" + observacao + ", sair=" + sair + "]";
+		return "[id=" + id + ", name=" + name + ", observacao=" + observacao + "]";
 	}
+
 }

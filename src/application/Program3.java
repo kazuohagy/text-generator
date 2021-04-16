@@ -25,10 +25,12 @@ public class Program3 {
 				for (int a = 0; a < rep; a++) {
 					System.out.println("Digite o id: ");
 					int id = sc.nextInt();
+					//sc.nextLine(); é necessário para limpar o Buffer, e permitir inserir os demais dados
+					sc.nextLine();
 					System.out.println("Digite o nome:");
-					String name = sc.next();
+					String name = sc.nextLine();
 					System.out.println("Digite uma observação:");
-					String obs = sc.next();
+					String obs = sc.nextLine();
 					lista.add(new UsersTest(id, name, obs));
 				}
 			} catch (InputMismatchException e) {
@@ -48,14 +50,20 @@ public class Program3 {
 		try {
 		
 		FileWriter fileWriter = new FileWriter(arq,true);
+		//BufferedWriter bw = new BufferedWriter(fileWriter);
 		PrintWriter printWriter = new PrintWriter(fileWriter);
 		for(int i = 0; i<lista.size() ; i++) {
-			printWriter.println(lista.get(i).getId());
-			printWriter.println(lista.get(i).getName());
+			printWriter.print(lista.get(i).getId()+";");
+			printWriter.print(lista.get(i).getName()+";");
 			printWriter.println(lista.get(i).getObservacao());
-			printWriter.flush();
-			printWriter.close();
 		}
+		printWriter.flush();
+		printWriter.close();
+/*
+			bw.write(lista.toString());
+			bw.newLine();
+			bw.close();
+			*/
 		
 		}catch(IOException e) {
 			e.printStackTrace();
