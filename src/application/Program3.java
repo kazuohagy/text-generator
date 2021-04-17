@@ -1,6 +1,7 @@
 package application;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -18,10 +19,17 @@ public class Program3 {
 		Scanner sc = new Scanner(System.in);
 		List<UsersTest> lista = new ArrayList<>();
 		UsersTest test = new UsersTest();
+		
+		File dir1 = new File("C:\\Users\\kazuo\\Desktop\\SuperMario\\Backup");
+		File arq = new File(dir1, "Backup1.txt");
 
 		while (!test.getSair()) {
 			System.out.println("Quantos usuarios irá inserir");
 			try {
+				dir1.mkdir();
+				
+				
+				arq.createNewFile();
 				int rep = sc.nextInt();
 				System.out.println(test.getSair());
 				for (int a = 0; a < rep; a++) {
@@ -38,10 +46,14 @@ public class Program3 {
 				}
 			} catch (InputMismatchException e) {
 				System.out.println(e.getMessage());
+			}catch(IOException e) {
+				e.printStackTrace();
 			}
 			System.out.println(lista);
 			// System.out.println(lista.get(0).getId());
 			escrever(lista);
+			// Daqui pra baixo o negocio ficou sério
+			backup(ler());
 			System.out.println("Deseja sair do programa? Digite sair ou qualquer letra para continuar");
 			test.sair(sc.next().toLowerCase());
 		}
@@ -72,7 +84,22 @@ public class Program3 {
 
 	}
 
-	public static void backup() {
+	public static void backup(List<UsersTest> lista) {
+		File dir = new File("C:\\Users\\kazuo\\Desktop\\SuperMario\\Backup");
+		File arq = new File(dir, "Backup1.txt");
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(arq))) {
+			
+
+			
+			for (int i = 0; i < lista.size(); i++) {
+				bw.write(lista.get(i).toString());
+				bw.newLine();
+			}
+		}
+
+		catch (IOException e) {
+			e.printStackTrace();
+		}
 
 	}
 
@@ -85,7 +112,7 @@ public class Program3 {
 			while (lines != null) {
 				String[] vect = lines.split(";");
 				Integer id = Integer.parseInt(vect[0]);
-				lista1.add(new UsersTest(id,vect[1],vect[2]));
+				lista1.add(new UsersTest(id, vect[1], vect[2]));
 				System.out.println(lines);
 				lines = br.readLine();
 			}
