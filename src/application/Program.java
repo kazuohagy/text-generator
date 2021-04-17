@@ -22,6 +22,7 @@ public class Program {
 				texto.add(sc.nextLine());
 			}
 			textoVetor = new String[texto.size()];
+			//Daqui pra baixo ficou foda
 			for(int i = 0;i<textoVetor.length;i++) {
 				textoVetor[i] = texto.get(i);
 			}
