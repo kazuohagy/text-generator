@@ -9,7 +9,7 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 public class Program {
-
+//TERMINAR ESSE CODIGO HOJE !!!!!
 	public static void main(String[] args) {
 		File file = new File("C:\\teste\\in.txt");
 		Scanner sc = null;
